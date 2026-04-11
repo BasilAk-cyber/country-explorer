@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Explorer - Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="var(--color-primary)" stroke-width="2"/>
+          <path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20Z" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
+          <path d="M2 12h20M12 2a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 1 0-9Zm0 20a4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
+        </svg>
+        <span class="nav-title">Country Explorer</span>
+      </div>
+      
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="nav-center">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="browse.html" class="nav-link">Browse</a>
+        <a href="favorites.html" class="nav-link">Favorites</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+      </div>
+      
+      <div class="nav-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <h1 class="hero-title">Country Explorer</h1>
+      <p class="hero-subtitle">Discover the world — one country at a time</p>
+      
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            class="search-input" 
+            placeholder="Search countries..." 
+            aria-label="Search countries"
+          >
+        </div>
+      </div>
+      
+      <div class="recent-searches">
+        <span class="recent-label">Recent:</span>
+        <div class="chips-container">
+          <button class="chip">Japan</button>
+          <button class="chip">Brazil</button>
+          <button class="chip">Germany</button>
+          <button class="chip">Ghana</button>
+          <button class="chip">Iceland</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section" style="display: none;">
+      <div class="container">
+        <h2 style="margin-bottom: 32px;">Search Results</h2>
+        <div class="country-grid" id="results-grid">
+          <!-- Skeleton cards will be inserted here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Country Explorer — WDD 330 — BYU-Idaho</p>
+    <div class="footer-links">
+      <a href="https://restcountries.com/" target="_blank" rel="noopener noreferrer">REST Countries API</a>
+      <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initTheme, toggleTheme, initMobileMenu, showSkeletons, hideSkeletons } from './js/ui.js';
+    
+    initTheme();
+    
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', toggleTheme);
+    
+    initMobileMenu();
+    
+    const searchInput = document.querySelector('.search-input');
+    const resultsSection = document.querySelector('.results-section');
+    const resultsGrid = document.getElementById('results-grid');
+    
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      if (query.length > 0) {
+        resultsSection.style.display = 'block';
+        showSkeletons(resultsGrid, 8);
+        // API call will be made here later
+      } else {
+        resultsSection.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
