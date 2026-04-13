@@ -1,5 +1,7 @@
 const countryGrid = document.querySelector('#countries-grid');
 
+const allCountries = []
+
 function createCountryCard(country) {
     const capital = country.capital ? country.capital[0] : 'N/A';
     return `
@@ -28,6 +30,7 @@ async function fetchAllCountries() {
         }
         
         const countries = await response.json();
+        allCountries.push(...countries);  
         console.log(`✅ Successfully loaded ${countries.length} countries`);
         return countries;
         
