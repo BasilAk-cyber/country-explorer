@@ -14,6 +14,10 @@ function createCountryCard(country) {
 async function fetchAllCountries() {
     const url = `https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,region,population,cca3`;
     const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch countries');
+    }
     const countries = await response.json();
     return countries;   
 }
