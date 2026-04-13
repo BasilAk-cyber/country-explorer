@@ -18,6 +18,9 @@ async function fetchAllCountries() {
     return countries;   
 }
 
+console.log('Fetching all countries...');
+console.log(fetchAllCountries());
+
 
 async function displayCountries() {
     const allCountries = await fetchAllCountries();
