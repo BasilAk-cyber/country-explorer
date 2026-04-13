@@ -58,6 +58,33 @@ async function displayCountries() {
     }
 }
 
+async function filterByContinent(region) {
+    
+    try{
+        const filteredCountries = allCountries.filter(country => country.region === region);
+        countryGrid.innerHTML = '';   // clear current grid
+
+        filteredCountries.forEach(country => {
+            countryGrid.innerHTML += createCountryCard(country);
+        });
+    } catch (error) {
+        console.error('Filter error:', error);
+            countryGrid.innerHTML = `<p style="color:red; grid-column:1/-1;">Failed to filter countries. Please try again later.</p>`;
+    }
+}
+
+document.querySelectorAll('.filter-btn-item').forEach(button => {
+    button.addEventListener('click', () => {
+        const region = button.getAttribute('data-region');
+        if (region === 'all') {
+            displayCountries();
+            return;
+        }
+        filterByContinent(region);
+    });
+});
+
+
 // Call it when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     displayCountries();
