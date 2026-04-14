@@ -101,30 +101,7 @@
     </div>
   </footer>
 
-  <script type="module">
-    import { initTheme, toggleTheme, initMobileMenu, showSkeletons, hideSkeletons } from './js/ui.js';
-    
-    initTheme();
-    
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', toggleTheme);
-    
-    initMobileMenu();
-    
-    const searchInput = document.querySelector('.search-input');
-    const resultsSection = document.querySelector('.results-section');
-    const resultsGrid = document.getElementById('results-grid');
-    
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.trim();
-      if (query.length > 0) {
-        resultsSection.style.display = 'block';
-        showSkeletons(resultsGrid, 8);
-        // API call will be made here later
-      } else {
-        resultsSection.style.display = 'none';
-      }
-    });
+  <script type="module" src="scripts/api.js">
   </script>
 </body>
 </html>

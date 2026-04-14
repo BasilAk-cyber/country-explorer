@@ -1,6 +1,5 @@
 const countryGrid = document.querySelector('#countries-grid');
-
-const allCountries = []
+let allCountries = [];
 
 function createCountryCard(country) {
     const capital = country.capital ? country.capital[0] : 'N/A';
@@ -19,73 +18,76 @@ function createCountryCard(country) {
 }
 
 async function fetchAllCountries() {
-    // Reduced to 6 fields – safest option (under the limit)
     const url = 'https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital,cca3';
     
     try {
         const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
-        }
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const countries = await response.json();
-        allCountries.push(...countries);  
-        console.log(`✅ Successfully loaded ${countries.length} countries`);
+        allCountries = countries;
+        console.log(`✅ Loaded ${countries.length} countries successfully`);
         return countries;
-        
     } catch (error) {
-        console.error('❌ Error fetching countries:', error);
-        countryGrid.innerHTML = `<p style="color:red; grid-column:1/-1;">Failed to load countries. Please try again later.</p>`;
+        console.error('❌ Fetch error:', error);
+        countryGrid.innerHTML = `<p style="color:red; grid-column:1/-1;">Failed to load countries. Please try again.</p>`;
         throw error;
     }
 }
 
+function renderCountries(countries) {
+    countryGrid.innerHTML = '';
+    
+    if (countries.length === 0) {
+        countryGrid.innerHTML = `<p style="color:orange; grid-column:1/-1;">No countries found.</p>`;
+        return;
+    }
+
+    let html = '';
+    countries.forEach(country => {
+        html += createCountryCard(country);
+    });
+    countryGrid.innerHTML = html;   // ← single DOM update (much faster)
+}
+
 async function displayCountries() {
     try {
-        countryGrid.innerHTML = '<p>Loading countries...</p>';   // optional loading message
-        
-        const allCountries = await fetchAllCountries();
-        
-        countryGrid.innerHTML = '';   // clear loading message
-        
-        allCountries.forEach(country => {
-            countryGrid.innerHTML += createCountryCard(country);
-        });
-        
+        countryGrid.innerHTML = '<p>Loading countries...</p>';
+        await fetchAllCountries();
+        renderCountries(allCountries);
     } catch (error) {
         console.error('Display error:', error);
     }
 }
 
-async function filterByContinent(region) {
-    
-    try{
-        const filteredCountries = allCountries.filter(country => country.region === region);
-        countryGrid.innerHTML = '';   // clear current grid
-
-        filteredCountries.forEach(country => {
-            countryGrid.innerHTML += createCountryCard(country);
-        });
-    } catch (error) {
-        console.error('Filter error:', error);
-            countryGrid.innerHTML = `<p style="color:red; grid-column:1/-1;">Failed to filter countries. Please try again later.</p>`;
+function filterByContinent(region) {
+    if (!allCountries.length) {
+        console.warn("⚠️ Data not loaded yet! Click filters after page fully loads.");
+        return;
     }
+
+    console.log(`🧭 Filter requested: "${region}"`);
+
+    const filtered = region.toLowerCase() === 'all' 
+        ? allCountries 
+        : allCountries.filter(country => 
+            country.region.toLowerCase() === region.toLowerCase()
+          );
+
+    console.log(`📊 Found ${filtered.length} countries in ${region}`);
+    renderCountries(filtered);
 }
 
+// Button listeners
 document.querySelectorAll('.filter-btn-item').forEach(button => {
     button.addEventListener('click', () => {
         const region = button.getAttribute('data-region');
-        if (region === 'all') {
-            displayCountries();
-            return;
-        }
         filterByContinent(region);
     });
 });
 
-
-// Call it when the page loads
+// Start the app
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("🚀 Page loaded - starting country app");
     displayCountries();
 });
