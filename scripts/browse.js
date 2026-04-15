@@ -1,39 +1,9 @@
+import { fetchAllCountries } from './utils.js';
+import { createCountryCard } from './templates.js';
+
 const countryGrid = document.querySelector('#countries-grid');
+const sortBtn = document.querySelectorAll('.sort-btn-item');
 let allCountries = [];
-
-function createCountryCard(country) {
-    const capital = country.capital ? country.capital[0] : 'N/A';
-    return `
-        <a href="detail.html?code=${country.cca3}" class="country-card">
-            <img src="${country.flags.png}" 
-                 alt="Flag of ${country.name.common}" 
-                 class="card-flag">
-            <div class="card-content">
-                <h3 class="card-title">${country.name.common}</h3>
-                <p class="card-capital">${capital}</p>
-                <span class="card-tag">${country.region}</span> 
-                <p class="card-population">${country.population.toLocaleString()}</p>
-            </div>
-        </a>`;
-}
-
-async function fetchAllCountries() {
-    const url = 'https://restcountries.com/v3.1/all?fields=name,flags,region,population,capital,cca3';
-    
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const countries = await response.json();
-        allCountries = countries;
-        console.log(`✅ Loaded ${countries.length} countries successfully`);
-        return countries;
-    } catch (error) {
-        console.error('❌ Fetch error:', error);
-        countryGrid.innerHTML = `<p style="color:red; grid-column:1/-1;">Failed to load countries. Please try again.</p>`;
-        throw error;
-    }
-}
 
 function renderCountries(countries) {
     countryGrid.innerHTML = '';
@@ -50,23 +20,57 @@ function renderCountries(countries) {
     countryGrid.innerHTML = html;   // ← single DOM update (much faster)
 }
 
+function sortedCountries(order){
+
+    let sorted = [...allCountries].sort((a, b) => {
+        const nameA = a.name.common.toUpperCase();
+        const nameB = b.name.common.toUpperCase();
+        const popA = a.population;
+        const popB = b.population;
+
+        switch(order) {
+            case 'name-asc':
+                return nameA.localeCompare(nameB);
+            case 'name-desc':
+                return nameB.localeCompare(nameA);
+            case 'pop-asc':
+                return popA - popB;
+            case 'pop-desc':
+                return popB - popA;
+            default: displayCountries();
+        }
+    });
+    return sorted;
+
+}
+
+sortBtn.forEach(button => {
+    button.addEventListener('click', () => {
+        const order = button.getAttribute('data-sort');
+        const sorted = sortedCountries(order);
+        renderCountries(sorted);
+    });
+});
+
 async function displayCountries() {
     try {
         countryGrid.innerHTML = '<p>Loading countries...</p>';
-        await fetchAllCountries();
+        const countries = await fetchAllCountries();
+        allCountries = countries;
         renderCountries(allCountries);
     } catch (error) {
-        console.error('Display error:', error);
+        countryGrid.innerHTML = `<p style="color:red; grid-column:1/-1;">Failed to load countries. Please try again.</p>`;
+        console.error('Display error:', error); 
     }
 }
 
 function filterByContinent(region) {
     if (!allCountries.length) {
-        console.warn("⚠️ Data not loaded yet! Click filters after page fully loads.");
+        console.log("Data not loaded yet! Click filters after page fully loads.");
         return;
     }
 
-    console.log(`🧭 Filter requested: "${region}"`);
+    console.log(`Filter requested: "${region}"`);
 
     const filtered = region.toLowerCase() === 'all' 
         ? allCountries 
@@ -74,11 +78,10 @@ function filterByContinent(region) {
             country.region.toLowerCase() === region.toLowerCase()
           );
 
-    console.log(`📊 Found ${filtered.length} countries in ${region}`);
+    console.log(`Found ${filtered.length} countries in ${region}`);
     renderCountries(filtered);
 }
 
-// Button listeners
 document.querySelectorAll('.filter-btn-item').forEach(button => {
     button.addEventListener('click', () => {
         const region = button.getAttribute('data-region');
@@ -88,6 +91,6 @@ document.querySelectorAll('.filter-btn-item').forEach(button => {
 
 // Start the app
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("🚀 Page loaded - starting country app");
+    console.log("Page loaded - starting country app");
     displayCountries();
 });

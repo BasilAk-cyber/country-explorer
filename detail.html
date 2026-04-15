@@ -47,91 +47,7 @@
   </header>
 
   <main id="main" class="detail-layout">
-    <div class="container">
-      <a href="browse.html" class="back-link">← Back to Browse</a>
-      
-      <div class="detail-content">
-        <div class="detail-left">
-          <img src="https://flagcdn.com/w320/jp.webp" alt="Flag of Japan" class="detail-flag">
-          <a href="https://maps.google.com/?q=Japan" target="_blank" rel="noopener noreferrer" class="map-link">
-            🗺 View on map
-          </a>
-        </div>
-        
-        <div class="detail-right">
-          <h1 class="detail-title">Japan</h1>
-          <p class="detail-native-name">Nippon-koku</p>
-          
-          <dl class="detail-list">
-            <dt>Capital</dt>
-            <dd>Tokyo</dd>
-            
-            <dt>Region</dt>
-            <dd>Asia</dd>
-            
-            <dt>Subregion</dt>
-            <dd>Eastern Asia</dd>
-            
-            <dt>Population</dt>
-            <dd>125,124,000</dd>
-            
-            <dt>Area</dt>
-            <dd>377,975 km²</dd>
-          </dl>
-          
-          <div class="detail-section">
-            <h3 class="detail-section-title">Languages</h3>
-            <div class="chips-container">
-              <span class="chip">Japanese</span>
-            </div>
-          </div>
-          
-          <div class="detail-section">
-            <h3 class="detail-section-title">Currencies</h3>
-            <div class="chips-container">
-              <span class="chip">JPY (¥)</span>
-            </div>
-          </div>
-          
-          <div class="weather-card">
-            <div class="weather-left">
-              <span class="weather-icon">☀️</span>
-            </div>
-            <div class="weather-right">
-              <p class="weather-location">Tokyo · 28°C</p>
-              <p class="weather-condition">Partly Sunny</p>
-              <p class="weather-details">Humidity: 65% · Wind: 12 km/h</p>
-            </div>
-          </div>
-          
-          <div class="skeleton-card" style="margin-top: 16px;">
-            <div class="skeleton-line" style="width: 60%; height: 16px;"></div>
-            <div class="skeleton-line" style="width: 80%; height: 20px; margin-top: 8px;"></div>
-            <div class="skeleton-line" style="width: 50%; height: 16px; margin-top: 8px;"></div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="border-countries">
-        <h3 class="border-title">Border Countries:</h3>
-        <div class="chips-container">
-          <a href="detail.html?code=CHN" class="chip-link">🇨🇳 China</a>
-          <a href="detail.html?code=PRK" class="chip-link">🇰🇵 North Korea</a>
-          <a href="detail.html?code=RUS" class="chip-link">🇷🇺 Russia</a>
-        </div>
-      </div>
-      
-      <div class="action-bar">
-        <button class="btn btn-outline">♡ Save to Favorites</button>
-        <button class="btn btn-primary">⇄ Add to Compare</button>
-      </div>
-      
-      <!-- Alternative state showing saved button -->
-      <div class="action-bar" style="margin-top: 32px;">
-        <button class="btn btn-outline saved">♥ Saved</button>
-        <button class="btn btn-primary">⇄ Add to Compare</button>
-      </div>
-    </div>
+    
   </main>
 
   <footer>
@@ -143,14 +59,6 @@
   </footer>
 
   <script type="module">
-    import { initTheme, toggleTheme, initMobileMenu } from './js/ui.js';
-    
-    initTheme();
-    
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', toggleTheme);
-    
-    initMobileMenu();
   </script>
 </body>
 </html>
