@@ -1,4 +1,5 @@
-import { createCountryCard, fetchAllCountries } from './utils.js';
+import { fetchAllCountries } from './utils.js';
+import { createCountryCard } from './templates.js';
 
 const countrySearch = document.querySelector('.search-input');
 const countrySearchGrid = document.querySelector('.country-grid');
