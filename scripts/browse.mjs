@@ -1,5 +1,5 @@
-import { fetchAllCountries } from './utils.js';
-import { createCountryCard } from './templates.js';
+import { fetchAllCountries } from './utils.mjs';
+import { createCountryCard } from './templates.mjs';
 
 const countryGrid = document.querySelector('#countries-grid');
 const sortBtn = document.querySelectorAll('.sort-btn-item');

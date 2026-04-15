@@ -57,49 +57,7 @@
       </div>
       
       <div class="country-grid" id="favorites-grid">
-        <div class="country-card">
-          <img src="https://flagcdn.com/w320/jp.webp" alt="Flag of Japan" class="card-flag">
-          <button class="card-remove-btn" aria-label="Remove Japan from favorites">✕</button>
-          <div class="card-content">
-            <h3 class="card-title">Japan</h3>
-            <p class="card-capital">Tokyo</p>
-            <span class="card-tag">Asia</span>
-            <p class="card-population">125,124,000</p>
-          </div>
-        </div>
         
-        <div class="country-card">
-          <img src="https://flagcdn.com/w320/bra.webp" alt="Flag of Brazil" class="card-flag">
-          <button class="card-remove-btn" aria-label="Remove Brazil from favorites">✕</button>
-          <div class="card-content">
-            <h3 class="card-title">Brazil</h3>
-            <p class="card-capital">Brasília</p>
-            <span class="card-tag">Americas</span>
-            <p class="card-population">215,313,498</p>
-          </div>
-        </div>
-        
-        <div class="country-card">
-          <img src="https://flagcdn.com/w320/de.webp" alt="Flag of Germany" class="card-flag">
-          <button class="card-remove-btn" aria-label="Remove Germany from favorites">✕</button>
-          <div class="card-content">
-            <h3 class="card-title">Germany</h3>
-            <p class="card-capital">Berlin</p>
-            <span class="card-tag">Europe</span>
-            <p class="card-population">83,783,942</p>
-          </div>
-        </div>
-        
-        <div class="country-card">
-          <img src="https://flagcdn.com/w320/fr.webp" alt="Flag of France" class="card-flag">
-          <button class="card-remove-btn" aria-label="Remove France from favorites">✕</button>
-          <div class="card-content">
-            <h3 class="card-title">France</h3>
-            <p class="card-capital">Paris</p>
-            <span class="card-tag">Europe</span>
-            <p class="card-population">67,413,000</p>
-          </div>
-        </div>
       </div>
       
       <!-- Empty state (commented out for now) -->
@@ -120,15 +78,7 @@
     </div>
   </footer>
 
-  <script type="module">
-    import { initTheme, toggleTheme, initMobileMenu } from './js/ui.js';
-    
-    initTheme();
-    
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', toggleTheme);
-    
-    initMobileMenu();
+  <script type="module" src="scripts/favourite.mjs">
   </script>
 </body>
 </html>
