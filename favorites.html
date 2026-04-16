@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Explorer - Favorites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="var(--color-primary)" stroke-width="2"/>
+          <path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20Z" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
+          <path d="M2 12h20M12 2a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 1 0-9Zm0 20a4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
+        </svg>
+        <span class="nav-title">Country Explorer</span>
+      </div>
+      
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="nav-center">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="browse.html" class="nav-link">Browse</a>
+        <a href="favorites.html" class="nav-link active">Favorites</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+      </div>
+      
+      <div class="nav-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <div class="favorites-header">
+        <div class="favorites-title-group">
+          <h1 class="favorites-title">My Favorites</h1>
+          <span class="favorites-badge">(4 saved)</span>
+        </div>
+        <button class="btn btn-outline btn-danger">Clear All</button>
+      </div>
+      
+      <div class="country-grid" id="favorites-grid">
+        
+      </div>
+      
+      <!-- Empty state (commented out for now) -->
+      <div class="empty-state" style="display: none;">
+        <div class="empty-emoji">🌍</div>
+        <h2 class="empty-heading">No favorites yet.</h2>
+        <p class="empty-subtext">Start exploring to save countries here.</p>
+        <a href="browse.html" class="btn btn-primary">Browse Countries →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Country Explorer — WDD 330 — BYU-Idaho</p>
+    <div class="footer-links">
+      <a href="https://restcountries.com/" target="_blank" rel="noopener noreferrer">REST Countries API</a>
+      <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI</a>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/favourite.mjs">
+  </script>
+</body>
+</html>

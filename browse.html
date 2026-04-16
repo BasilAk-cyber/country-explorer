@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Explorer - Browse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="var(--color-primary)" stroke-width="2"/>
+          <path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20Z" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
+          <path d="M2 12h20M12 2a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 1 0-9Zm0 20a4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="var(--color-primary)" stroke-width="2" fill="none"/>
+        </svg>
+        <span class="nav-title">Country Explorer</span>
+      </div>
+      
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="nav-center">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="browse.html" class="nav-link active">Browse</a>
+        <a href="favorites.html" class="nav-link">Favorites</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+      </div>
+      
+      <div class="nav-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+    </nav>
+    
+    <div class="mobile-filter-bar">
+      <button class="filter-btn" aria-label="Open filters">Filter</button>
+      <button class="sort-btn" aria-label="Open sort options">Sort</button>
+    </div>
+  </header>
+
+  <main id="main" class="browse-layout">
+    <aside class="filter-sidebar">
+      <div class="filter-section">
+        <h3 class="filter-title">Filter by Region</h3>
+        <div class="button-group vertical">
+          <button class="filter-btn-item active" data-region="all">All</button>
+          <button class="filter-btn-item" data-region="africa">Africa</button>
+          <button class="filter-btn-item" data-region="americas">Americas</button>
+          <button class="filter-btn-item" data-region="asia">Asia</button>
+          <button class="filter-btn-item" data-region="europe">Europe</button>
+          <button class="filter-btn-item" data-region="oceania">Oceania</button>
+        </div>
+      </div>
+      
+      <div class="filter-section">
+        <h3 class="filter-title">Sort By</h3>
+        <div class="button-group vertical">
+          <button class="sort-btn-item" data-sort="name-asc">Name A–Z</button>
+          <button class="sort-btn-item" data-sort="name-desc">Name Z–A</button>
+          <button class="sort-btn-item" data-sort="pop-asc">Population ↑</button>
+          <button class="sort-btn-item" data-sort="pop-desc">Population ↓</button>
+        </div>
+      </div>
+      
+      <button class="clear-filters-link">Clear Filters</button>
+    </aside>
+
+    <section class="browse-content">
+      <div class="results-header">
+        <h2>Showing 250 countries</h2>
+        <div class="sort-dropdown">
+          <label for="sort-select">Sort:</label>
+          <select id="sort-select" aria-label="Sort countries">
+            <option value="name-asc">Name A–Z</option>
+            <option value="name-desc">Name Z–A</option>
+            <option value="pop-asc">Population ↑</option>
+            <option value="pop-desc">Population ↓</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="country-grid" id="countries-grid">
+        <!-- Country cards will be rendered here -->
+       
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Country Explorer — WDD 330 — BYU-Idaho</p>
+    <div class="footer-links">
+      <a href="https://restcountries.com/" target="_blank" rel="noopener noreferrer">REST Countries API</a>
+      <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI</a>
+    </div>
+  </footer>
+
+  <script type="module" src="scripts/browse.mjs">
+  </script>
+</body>
+</html>
