@@ -1,6 +1,10 @@
 import { detailsPageTemplate } from "./templates.mjs";
 import { fetchCountryByCode } from "./utils.mjs";
+<<<<<<< HEAD
 import { isCountrySaved } from "./favourite.mjs";   // ← Add this
+=======
+import { isCountrySaved } from "./favorites.mjs";   // ← Add this
+>>>>>>> f55fc903da51c8dde8a5e76b726af9fe66da15dc
 
 async function loadDetailsPage() {
   const params = new URLSearchParams(window.location.search);

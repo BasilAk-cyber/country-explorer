@@ -1,4 +1,6 @@
+
 import { getFavorites } from "./utils.mjs";
+
 import { createCountryCard } from "./templates.mjs";
 
 function renderFavorites() {
